@@ -16,9 +16,7 @@ def recv_msg(sock, cl=1024):
             break
         yield rc
 
-def main():
-    ip = input("IPアドレスを入力してください:")
-    port = int(input("ポート番号を入力してください:"))
+def main(ip, port):
 
     cs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     cs.connect((ip, port))
@@ -31,4 +29,5 @@ def main():
     cs.close()
 
 if __name__ == '__main__':
-    main()
+    ip, port = input().split(':')
+    main(ip, int(port))
