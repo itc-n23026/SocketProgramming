@@ -18,18 +18,14 @@ def recv_msg(sock, cl=1024):
 
 def main(ip, port):
 
-    ss = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    ss.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,True)
-    ss.bind((ip, port))
-    ss.listen()
-    print('starting server ...')
-    cs, (ca, cp) = ss.accept()
-    print(f'accepted from {ca}:{cp}')
-    for rm in recv_msg(cs):
-        send_msg(cs, rm)
-        print(f'echo: {rm}')
+    cs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    cs.connect((ip, port))
+    message = "Hello, World!"
+    message_bytes = message.encode('ASCII')
+    send_msg(cs, message_bytes)
+    for received_data in recv_msg(cs):
+        print(received_data.decode('ASCII'), end='')
     cs.close()
-    ss.close()
 
 if __name__ == '__main__':
     ip, port = input().split(':')
