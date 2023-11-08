@@ -15,3 +15,4 @@ print('Data : {}'.format(rcv_data.decode("utf-8")))
 
 client.send('Hi!'.encode("utf-8"))
 client.close()
+

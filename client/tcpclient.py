@@ -7,3 +7,4 @@ tcp_socket.connect((str(ip_address), 52001))
 tcp_socket.send('Hello!'.encode("utf-8"))
 response = tcp_socket.recv(1024)
 print('Data : {}'.format(response.decode("utf-8")))
+
