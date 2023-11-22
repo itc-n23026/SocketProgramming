@@ -20,11 +20,11 @@ def main(ip, port):
 
     cs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     cs.connect((ip, port))
-    reqt = 'GET / HTTP/1.0\r\n\r\n'
-    reqb = reqt.encode('ASCII')
+    reqt = 'GET / HTTP/1.1\r\nHost: www.it-college.ac.jp\r\n\r\n'
+    reqb = reqt.encode('utf-8')
     send_msg(cs, reqb)
     reqb = b''.join(recv_msg(cs))
-    reqt = reqb.decode('ASCII')
+    reqt = reqb.decode('utf-8')
     print(reqt)
     cs.close()
 
