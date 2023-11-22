@@ -31,9 +31,7 @@ def handle_client(client_socket):
             remove(client_socket)
             break
 
-def main():
-    host = '127.0.0.1'
-    port = 12345
+def main(host, port):
 
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind((host, port))
@@ -51,5 +49,5 @@ def main():
         client_thread.start()
 
 if __name__ == "__main__":
-    main()
-
+    host, port = input("IPアドレスとポート番号を入力してください:").split(':')
+    main(host, int(port))
